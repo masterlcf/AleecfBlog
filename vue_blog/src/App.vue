@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+<<<<<<< HEAD
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -28,5 +29,21 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+=======
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: 'app'
+}
+</script>
+
+<style>
+#app {
+
+>>>>>>> vue
 }
 </style>
