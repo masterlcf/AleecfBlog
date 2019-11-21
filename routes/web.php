@@ -10,5 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-    Route::get('test','IndexController@index')->middleware('checkId');
-    Route::get('show/{id}','ShowProfile');
+
+
+    Route::get('api',function(){
+        return redirect('api/index.html');
+    });
+    Route::get('admin/',function(){
+      return redirect('admin/index.html');
+    });

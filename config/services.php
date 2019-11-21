@@ -30,4 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'blog' => [
+        'login_timeOut' => env('LOGIN_TIMEOUT', 300),//token过期时间
+    ],
+
 ];
