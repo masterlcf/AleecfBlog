@@ -12,10 +12,17 @@
     </el-header>
     <el-container>
       <el-aside width="200px">
+        <div class="toggle-button"
+             @click="toggleCollapse">
+          |||
+        </div>
         <el-menu default-active="2"
                  background-color="#010101"
                  text-color="#fff"
-                 active-text-color="#ffd04b">
+                 active-text-color="#409EFF"
+                 unique-opened
+                 :collapse="isCollapse"
+                 :collapse-transition="false">
 
           <el-submenu :index="item.id + ''"
                       v-for="item in menulist"
@@ -49,7 +56,8 @@ export default {
   },
   data () {
     return {
-      menulist: []
+      menulist: [],
+      isCollapse: false
     }
   },
   methods: {
@@ -58,9 +66,12 @@ export default {
       this.$router.push('/login')
       return true
     },
-    getMenuList () {
-      var menu = this.$route.params.data.permission
-      this.menulist = menu
+    async getMenuList () {
+      const { data: res } = await this.$http.get('admin/home')
+      this.menulist = res.data.permission
+    },
+    toggleCollapse () {
+      this.isCollapse = !this.isCollapse
     }
   }
 }
@@ -88,8 +99,20 @@ export default {
 }
 .el-aside {
   background-color: #010101;
+  .el-menu {
+    border-right: none;
+  }
 }
 .el-main {
   background-color: #eadef1;
+}
+.toggle-button {
+  background-color: #4a5064;
+  font-size: 10px;
+  line-height: 24px;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 0.2em;
+  cursor: pointer;
 }
 </style>
