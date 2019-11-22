@@ -19,15 +19,10 @@ class LoginController extends Controller
             return $this->returnError([],'用户名或密码错误');
         }
         $user->login_time = date('Y-m-d H:i:s');
-        $user->api_token = $this->getToken($user->id, config('services.blog')['login_timeOut']);
+        $user->api_token = $this->getToken($user->id);
         $user->save();
-        $roles = Role::getRoles($user->id);
-        $permissions = Permission::getUserPermission(array_column($roles,'id'));
-
         return $this->returnSuccess([
-            'token'=>$user->api_token,
-            'name' => $user->name,
-            'permission' => $permissions
+            'token'=>$user->api_token
         ]);
 
     }

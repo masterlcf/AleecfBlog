@@ -5,6 +5,7 @@
     });
 
     Route::group(['namespace'=>'admin','middleware'=>'token'], function () {
+        Route::get('home', 'HomeController@index');
         Route::get('logout', 'LoginOutController@index');
         //User
         Route::post('user', 'UserController@store');
